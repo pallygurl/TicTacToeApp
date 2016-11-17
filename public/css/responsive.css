@@ -1,0 +1,36 @@
+/*div.one-third{
+	width: 47.5%;
+}
+
+div.one-third-second{
+	margin: 0;
+}
+
+div.one-third-last{
+	clear:both;
+	float:none;
+	width:auto;
+	padding:20px 0 0 0;
+}
+
+@media screen and (max-width: 500px){
+
+	div.mobile-collapse{
+		width:auto;
+		float:none;
+		margin-right:0;
+	}
+}*/
+
+.input[type=button], input[type=submit]{
+	width: 10%;
+	padding: .5rem;
+	margin: .5rem 1.5rem;
+	background-color: #4CAF50;
+	border: none;
+	border-radius: 10%;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: .5rem;	
+}
