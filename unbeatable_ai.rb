@@ -36,7 +36,13 @@ class UnbeatableAI
         if potential_win_block(board, comp_marker) <= 8
             move = potential_win_block(board, comp_marker)
         elsif potential_win_block(board, player_marker) <= 8
-             move = potential_win_block(board, player_marker)
+            move = potential_win_block(board, player_marker)
+        elsif check_for_fork(board) <= 8
+            move = check_for_fork(board)
+
+        elsif block_opponents_fork(board, comp_marker) <= 8
+            move = block_opponents_fork(board, comp_marker)
+        
         elsif check_for_center(board)
             move = check_for_center(board)
         elsif check_for_empty_corner_if_center_taken(board)
@@ -93,6 +99,81 @@ class UnbeatableAI
         open_spot
     end
 
+    def check_for_fork(board)
+		@open_spot = 10
+		fork_line = []
+		fork_spot = []
+		i = []
+		
+		win_combinations(board).each_with_index do |forking_line, index|
+			if forking_line.count(marker) == 1 && forking_line.count("") == 2
+
+				i.push(index)
+			end
+		end
+
+		i.each do |index|
+			fork_spot.push(win_positions[index])
+		end
+
+		fork_spot = fork_spot.flatten.sort
+
+		fork_spot.each do |spot|
+			if board[spot] == ""
+				fork_line.push(spot)
+			end
+		end
+
+		if fork_line.detect { |match| fork_line.count(match) > 1 } == nil
+            open_spot = 10
+		else
+			open_spot = fork_line.detect { |match| fork_line.count(match) > 1 }
+		end
+        open_spot
+	end
+
+      def block_opponents_fork(board, comp_marker)
+		@open_spot = 10
+        comp_marker = marker
+
+		if comp_marker == "O"
+			player_marker = "X"
+		else
+			player_marker = "O"
+		end
+
+		fork_line = []
+		fork_spot = []
+		i = []
+		
+		win_combinations(board).each_with_index do |forking_line, index|
+			if forking_line.count(player_marker) == 1 && forking_line.count("") == 2
+				# fork_line = forking_line
+				i.push(index)
+			end
+		end
+
+		i.each do |index|
+			fork_spot.push(win_positions[index])
+		end
+
+		fork_spot = fork_spot.flatten
+
+		block_spot = []
+		fork_spot.each do |spot|
+			if board[spot] == ""
+				block_spot.push(spot)
+			end
+		end
+
+        if block_spot.detect {|match| block_spot.count(match) > 1} == nil
+            open_spot = 10
+        else
+            open_spot = block_spot.detect {|match| block_spot.count(match) > 1}
+        end
+        open_spot
+	end
+    
     def check_for_center(board)
         if board[4] == " "
             @open_spot = 4

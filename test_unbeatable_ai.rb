@@ -14,7 +14,7 @@ class TestUnbeatableAI < Minitest::Test
         assert_equal(0, player.get_move([" ", "X", "X", " ", " ", " ", " ", " ", " "]))
     end
 
-     def test_for_O_potential_win_position_6
+    def test_for_O_potential_win_position_6
         player = UnbeatableAI.new("O")
         assert_equal(6, player.get_move(["X", "X", "O", " ", "O", " ", " ", " ", "X"]))
     end
@@ -39,30 +39,25 @@ class TestUnbeatableAI < Minitest::Test
         assert_equal(5, player.get_move(["X", " ", " ", "O", "O", " ", " ", "X", " "]))
     end
 
-    # def test_O_create_fork_returns_zero
-	# 	player = UnbeatableAI.new("O")
-	# 	assert_equal(0, player.get_move([" ", "O", " ", " ", "O", "X", " ", "X", " "]))
-	# end
-
-    # def test_X_create_fork_returns_6
-    #     player = UnbeatableAI.new("X")
-    #     assert_equal(6, player.get_move([" ", "O", " ", " ", "X", "O", " ", "X", " "]))
-    # end
+    def test_O_create_fork_returns_zero
+		player = UnbeatableAI.new("O")
+		assert_equal(0, player.get_move([" ", "O", " ", " ", "O", "X", " ", "X", " "]))
+	end 
 
     def test_O_takes_center_returns_4
 		player = UnbeatableAI.new("O")
 		assert_equal(4, player.get_move(["X", " ", " ", " ", " ", " ", " ", " ", " "]))
-	  end
+    end
 
     def test_X_takes_center_returns_4
 		player = UnbeatableAI.new("O")
 		assert_equal(4, player.get_move([" ", "O", " ", " ", " ", " ", " ", " ", " "]))
-	  end
+    end
 
     def test_O_center_not_available_take_corner
 		player = UnbeatableAI.new("O")
 		assert_equal(0, player.get_move([" ", " ", " ", " ", "X", " ", " ", " ", " "]))
-	  end
+	end
     
     def test_for_empty_corner_returns_2
         player = UnbeatableAI.new("O")
@@ -80,4 +75,4 @@ class TestUnbeatableAI < Minitest::Test
     end
 
 
-end
+end 
