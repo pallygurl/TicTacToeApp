@@ -44,6 +44,11 @@ class TestUnbeatableAI < Minitest::Test
 		assert_equal(0, player.get_move([" ", "O", " ", " ", "O", "X", " ", "X", " "]))
 	end 
 
+    # def test_X_create_fork_returns_6
+    #     player = UnbeatableAI.new("X")
+    #     assert_equal(6, player.get_move([" ", "O", " ", " ", "X", "O", " ", "X", " "]))
+    # end
+    
     def test_O_takes_center_returns_4
 		player = UnbeatableAI.new("O")
 		assert_equal(4, player.get_move(["X", " ", " ", " ", " ", " ", " ", " ", " "]))
