@@ -15,7 +15,7 @@ check_for_block
 check_for_fork
 block_opponents_fork
 check_for_center
-opponent_corner
+opposite_corner
 check_empty_corner
 check_empty_side
 
