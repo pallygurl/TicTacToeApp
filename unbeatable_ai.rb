@@ -32,6 +32,31 @@ class UnbeatableAI
             move = open_spot
         end
         move
+        # if check_win_block(board, comp_marker) <= 8
+        #     move = check_win_block(board, comp_marker)
+
+        #     elsif check_win_block(board, player_marker) <=8
+        #         move = check_win_block(board, player_marker)
+
+        #     elsif check_for_fork(board) <= 8
+        #         move = check_for_fork(board)
+
+        #     elsif block_opponents_fork(board, comp_marker) <= 8
+        #         move = block_opponents_fork(board, comp_marker)
+
+        #     elsif check_for_center(board)
+        #         move = check_for_center(board)
+
+		# 	elsif check_empty_corner(board)
+		# 		move = check_empty_corner(board)
+
+		# 	elsif check_empty_side(board)
+		# 		move = check_empty_side(board)
+
+        #     else
+        #         move = board.index("")
+        #     end
+        # move
     end
 
     def win_combinations(board)
