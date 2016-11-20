@@ -13,13 +13,13 @@ ai = ""
 
 
 get '/' do
-    session[:board] = Board.new  #board for this session
-    erb :player_1_name, :layout => :home_layout, :locals => {:board => session[:board]}     #home gets player1 name, home_layout is board appearance, board is in board.rb
-end
-
-get '/player_1_name' do
+    # session[:board] = Board.new  #board for this session
     erb :player_1_name
 end
+# , layout => :home_layout, :locals => {:board => session[:board]}     #home gets player1 name, home_layout is board appearance, board is in board.rb
+# get '/player_1_name' do
+#     erb :player_1_name
+# end
 
 post '/player_1_name' do
 	session[:player_1_name] = params[:player_1]
@@ -27,21 +27,21 @@ post '/player_1_name' do
     session[:current_player] = session[:p1]
     session[:current_player_name] = session[:player_1_name]
 
-    erb :choose_opponent, :layout => :home_layout, :locals => {:board => session[:board]}
+    # erb :choose_opponent, :layout => :home_layout, :locals => {:board => session[:board]}
 
     # redirect '/choose_opponent'
 end
 
-get '/opponent_type' do
-  erb :choose_opponent
-end
+# get '/opponent_type' do
+#   erb :choose_opponent
+# end
 
 
-post '/choose_opponent' do
-	player_2 = params[:player_2]
-         if player_2 == "Human"
-           session[:p2] = Human.new("O") 
-           erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_position }
+# post '/choose_opponent' do
+# 	player_2 = params[:player_2]
+#          if player_2 == "Human"
+#            session[:p2] = Human.new("O") 
+#            erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_position }
 
 	# elsif player_2 == "2"
 	# 	session[:p2] = SequentialAI.new("O")
@@ -61,7 +61,7 @@ post '/choose_opponent' do
 
 # 		redirect '/get_move'
 # 	end
-end
+# end
 
 
 get '/player_2_name' do
@@ -76,4 +76,4 @@ end
 # get '/play_game' do
 #     erb :play_game, :locals => {:board => session[:board].board, :player_1_name => session[:player_1_name], :player_2_name => session[:player_2_name]}
 # #     #the above saves your board and lets you pull it everytime you call it?  Pushes your board into the erb.  This is why mob helps i would have spent hours on that
-end
+# end
