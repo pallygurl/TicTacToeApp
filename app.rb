@@ -5,7 +5,6 @@ require_relative 'unbeatable_ai.rb'
 require_relative 'sequential_ai.rb'
 require_relative 'new_board.rb'
 require_relative 'console_human.rb'
-require_relative 'console_game.rb'
 
 enable :sessions
 
@@ -17,17 +16,17 @@ get '/' do
     erb :home, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
 end
 
-get '/player_1_name' do
-    erb :player_1_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
-end
+# get '/player_1_name' do
+#     erb :player_1_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+# end
 
-post '/player_1_name' do
+post '/game' do
 	session[:player_1_name] = params[:player_1]
-	session[:p1] = Console_human.new("X")
+	session[:p1] = Human.new("X")
     session[:current_player] = session[:p1]
     session[:current_player_name] = session[:player_1_name]
 
-    erb :choose_opponent, :layout => :home_layout, :locals => {:board => session[:board]}, :player_1_name => session[:current_player_name] }
+    erb :choose_opponent, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :player_1_name => session[:player_1_name] }
 
     # redirect '/choose_opponent'
 end
@@ -37,7 +36,7 @@ end
 # end
 
 
-post '/choose_opponent' do
+post '/opponent' do
 	player_2 = params[:player_2]
          if player_2 == "Human"
            session[:p2] = Human.new("O") 
