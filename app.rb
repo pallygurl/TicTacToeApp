@@ -3,7 +3,7 @@ require 'rubygems'
 require_relative 'random_ai.rb'
 require_relative 'unbeatable_ai.rb'
 require_relative 'sequential_ai.rb'
-require_relative 'board.rb'
+require_relative 'new_board.rb'
 require_relative 'console_human.rb'
 require_relative 'console_game.rb'
 
@@ -13,21 +13,21 @@ ai = ""
 
 
 get '/' do
-    # session[:board] = Board.new  #board for this session
-    erb :player_1_name
+    session[:board] = Board.new(["","","","","","","","",""])
+    erb :home, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
 end
-# , layout => :home_layout, :locals => {:board => session[:board]}     #home gets player1 name, home_layout is board appearance, board is in board.rb
-# get '/player_1_name' do
-#     erb :player_1_name
-# end
+
+get '/player_1_name' do
+    erb :player_1_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+end
 
 post '/player_1_name' do
 	session[:player_1_name] = params[:player_1]
-	session[:p1] = Human.new("X")
+	session[:p1] = Console_human.new("X")
     session[:current_player] = session[:p1]
     session[:current_player_name] = session[:player_1_name]
 
-    # erb :choose_opponent, :layout => :home_layout, :locals => {:board => session[:board]}
+    erb :choose_opponent, :layout => :home_layout, :locals => {:board => session[:board]}, :player_1_name => session[:current_player_name] }
 
     # redirect '/choose_opponent'
 end
@@ -37,31 +37,31 @@ end
 # end
 
 
-# post '/choose_opponent' do
-# 	player_2 = params[:player_2]
-#          if player_2 == "Human"
-#            session[:p2] = Human.new("O") 
-#            erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_position }
+post '/choose_opponent' do
+	player_2 = params[:player_2]
+         if player_2 == "Human"
+           session[:p2] = Human.new("O") 
+           erb :player_2_name, :layout => :home, :locals => { :board => session[:board].board_position }
 
-	# elsif player_2 == "2"
-	# 	session[:p2] = SequentialAI.new("O")
-	# 	session[:name_player_2] = "Computer"
+	elsif player_2 == "2"
+		session[:p2] = SequentialAI.new("O")
+		session[:name_player_2] = "Computer"
 
-	# 	redirect '/get_move'
+		redirect '/get_move'
 
-	# elsif player_2 == "3"
-	# 	session[:p2] = RandomAI.new("O")
-	# 	session[:name_player_2] = "Computer"
+	elsif player_2 == "3"
+		session[:p2] = RandomAI.new("O")
+		session[:name_player_2] = "Computer"
 
-	# 	redirect '/get_move'
+		redirect '/get_move'
 
-	# else player_2 == "4"
-	# 	session[:p2] = UnbeatableAI.new("O")
-	# 	session[:name_player_2] = "Computer"
+	else player_2 == "4"
+		session[:p2] = UnbeatableAI.new("O")
+		session[:name_player_2] = "Computer"
 
-# 		redirect '/get_move'
-# 	end
-# end
+		redirect '/get_move'
+	end
+end
 
 
 get '/player_2_name' do

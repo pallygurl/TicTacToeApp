@@ -54,23 +54,6 @@
     width: 200px; height: 200px;
 }
 
-/*#outside-center {
-  border-left: 1px solid #1c1c1c;
-  border-right: 1px solid #1c1c1c;
-}
-
-
-
-#middle-left, #center, #middle-right {
-  border-top: 1px solid #1c1c1c;
-  border-bottom: 1px solid #1c1c1c;
-}
-
-#bottom-left, #bottom_center, #bottom_right {
-  border-left: 1px solid #1c1c1c;
-  border-right: 1px solid #1c1c1c;
-}*/
-
 #board tr td { 
   width: 80px; 
   height: 80px; 
