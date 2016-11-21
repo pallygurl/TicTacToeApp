@@ -21,7 +21,7 @@ end
 # end
 
 post '/game' do
-	session[:player_1_name] = params[:player_1]
+	session[:player_1_name] = params[:player_1].upcase
 	session[:p1] = Human.new("X")
     session[:current_player] = session[:p1]
     session[:current_player_name] = session[:player_1_name]
@@ -38,27 +38,29 @@ end
 
 post '/opponent' do
 	player_2 = params[:player_2]
-         if player_2 == "Human"
+         if player_2 == "human"
            session[:p2] = Human.new("O") 
-           erb :player_2_name, :layout => :home, :locals => { :board => session[:board].board_position }
+           erb :player_2_name, :layout => :home, :locals => { :board => session[:board].board_positions }
 
-	elsif player_2 == "2"
-		session[:p2] = SequentialAI.new("O")
-		session[:name_player_2] = "Computer"
+		   redirect '/player_2_name'
 
-		redirect '/get_move'
+	# elsif player_2 == "sequential_ai"
+	# 	session[:p2] = SequentialAI.new("O")
+	# 	session[:name_player_2] = "Computer"
 
-	elsif player_2 == "3"
-		session[:p2] = RandomAI.new("O")
-		session[:name_player_2] = "Computer"
+	# 	redirect '/get_move'
 
-		redirect '/get_move'
+	# elsif player_2 == "random_ai"
+	# 	session[:p2] = RandomAI.new("O")
+	# 	session[:name_player_2] = "Computer"
 
-	else player_2 == "4"
-		session[:p2] = UnbeatableAI.new("O")
-		session[:name_player_2] = "Computer"
+	# 	redirect '/get_move'
 
-		redirect '/get_move'
+	# else player_2 == "unbeatable_ai"
+	# 	session[:p2] = UnbeatableAI.new("O")
+	# 	session[:name_player_2] = "Computer"
+
+	# 	redirect '/get_move'
 	end
 end
 

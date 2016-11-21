@@ -41,8 +41,8 @@
   transform: scaleX(1);
 }*/
 .text {
-	color: #03840e; font-weight: bold; text-align: left; padding-left: 5rem
-} 	
+	color: #03840e; font-weight: bold; text-align: left; padding-left: 5rem; text-transform: capitalize;
+}
 
 #board { 
   margin: 0 auto;
