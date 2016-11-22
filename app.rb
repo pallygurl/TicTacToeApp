@@ -4,7 +4,7 @@ require_relative 'random_ai.rb'
 require_relative 'unbeatable_ai.rb'
 require_relative 'sequential_ai.rb'
 require_relative 'new_board.rb'
-require_relative 'console_human.rb'
+require_relative 'human.rb'
 
 enable :sessions
 
@@ -95,7 +95,7 @@ get '/get_move' do
 	# session[:player_1_name] = session[:player_1]
 	# session[:player_2_name] = session[:player_2]
 
-	move = session[:current_player].get_move(session[:board].grid)
+	move = session[:current_player].get_move(session[:board].positions)
     
 	if move == "NO"
 	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
