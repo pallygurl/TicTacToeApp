@@ -35,8 +35,10 @@ class UnbeatableAI
 
         if potential_win_block(board, comp_marker) <= 8
             move = potential_win_block(board, comp_marker)
+        
         elsif potential_win_block(board, player_marker) <= 8
             move = potential_win_block(board, player_marker)
+        
         elsif check_for_fork(board) <= 8
             move = check_for_fork(board)
 
@@ -45,8 +47,10 @@ class UnbeatableAI
         
         elsif check_for_center(board)
             move = check_for_center(board)
+       
         elsif check_for_empty_corner_if_center_taken(board)
             move = check_for_empty_corner_if_center_taken(board) 
+        
         elsif strategy_opposite_corners(board)
             move = strategy_opposite_corners(board)
        
@@ -177,7 +181,7 @@ class UnbeatableAI
     def check_for_center(board)
         if board[4] == " "
             @open_spot = 4
-        elsif board[4] == !" "
+        elsif board[4] != " "
             @open_spot = check_for_empty_corner_if_center_taken(board)
         end
     end
@@ -194,14 +198,11 @@ class UnbeatableAI
     end
 
     def strategy_opposite_corners(board)
-      @open_spot = 10
-        opposite_corners = [0, 8] || [2, 6]
-        # opposites.each do |opposite|
-            if opposite_corners != " "
-                @open_spot = edge_space(board)
-                # break
-            end
-        # end
+      if board[0] && board[8] == "X"
+        @open_spot = 1
+      elsif board[2] && board[6] == "X"
+        @open_spot =7  
+      end
     open_spot
     end
 

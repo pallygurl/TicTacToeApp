@@ -21,7 +21,7 @@ end
 # end
 
 post '/game' do
-	session[:player_1_name] = params[:player_1].upcase
+	session[:player_1_name] = params[:player_1].capitalize
 	session[:p1] = Human.new("X")
     session[:current_player] = session[:p1]
     session[:current_player_name] = session[:player_1_name]
@@ -37,10 +37,10 @@ end
 
 
 post '/opponent' do
-	player_2 = params[:player_2]
+	player_2 = params[:player_2].capitalize
          if player_2 == "human"
            session[:p2] = Human.new("O") 
-           erb :player_2_name, :layout => :home, :locals => { :board => session[:board].board_positions }
+           erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
 
 		   redirect '/player_2_name'
 
@@ -66,13 +66,91 @@ end
 
 
 get '/player_2_name' do
-    erb :player_2_name
+    erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
 end
 
 post '/player_2_name' do
-    session[:player_2_name] = params[:player_2_name]
-	redirect '/play_game'
+    session[:player_2_name] = params[:player_2_name].capitalize
+	redirect '/get_move'
 end
+
+# get '/play_game' do
+#     session[:player_1_name] = params[:player_1]
+# 	session[:player_2_name] = params[:player_2]
+#     session[:player_1] = Console_human.new("X")
+#     session[:current_player] = session[:player_1]
+#     session[:current_player_name] = session[:player_1_name]
+
+#     erb :play_game, :layout => :home_layout, :locals => { :board => session[:board].grid, :current_player_name => session[:current_player_name], :player_1_name => session[:player_1_name], :player_2_name => session[:player_2_name]}
+#     #the above saves your board and lets you pull it everytime you call it?  Pushes your board into the erb.  
+
+#     # redirect '/get_move'
+# end
+
+get '/get_move' do
+	# session[:board] = Board.new(["","","","","","","","",""])
+	# session[:board] = session[:board].board_positions
+	# session[:player_1] = params[:player_1]
+	# session[:player_2] = params[:player_2]
+	# session[:player_1_name] = session[:player_1]
+	# session[:player_2_name] = session[:player_2]
+
+	move = session[:current_player].get_move(session[:board].grid)
+    
+	if move == "NO"
+	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+        
+        
+    	elsif session[:board].valid_space?(move)
+            redirect '/make_move' #+ move.to_s 
+        else
+        	redirect '/get_move'
+	end
+end
+
+post '/get_player_move' do
+	session[:board] = session[:board]
+    move = params[:square].to_i
+
+    if session[:board].valid_space?(move)
+        redirect '/make_move' #+ move.to_s
+    else
+        redirect '/get_move'
+    end
+end
+
+get '/make_move' do
+	move_spot = params[:square].to_i
+
+	session[:board].update((move_spot), session[:current_player].marker)
+
+	# if session[:board].winner?(session[:current_player].marker) == true
+	# 	player_1 = session[:player_1_name]
+	# 	player_2 = session[:player_2_name]
+	# 	winner = session[:current_player_name]
+
+	# 	erb :win, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].grid }
+
+	# elsif session[:board].full_board? == true
+	# 	player_1 = session[:player_1_name]
+	# 	player_2 = session[:player_2_name]
+	# 	winner = "Tie"
+
+	# 	erb :tie, :locals => { :board => session[:board].grid }
+
+	# else
+		if session[:current_player].marker == "X"
+			session[:current_player] = session[:player_2]
+			session[:current_player_name] = session[:player_2_name]
+		else
+			session[:current_player] = session[:player_1]
+			session[:current_player_name] = session[:player_1_name]
+		end
+
+		redirect '/get_move'
+	# end	
+end
+# end
 
 # get '/play_game' do
 #     erb :play_game, :locals => {:board => session[:board].board, :player_1_name => session[:player_1_name], :player_2_name => session[:player_2_name]}
