@@ -5,6 +5,18 @@ class Board
         @board = Array.new(9, " ")
     end
 
+    def board_positions()
+		new_board = []
+		grid.each_with_index do |value, index|
+			if value == "X" || value == "O"
+				new_board.push(value)
+			else
+				new_board.push(index + 1)
+			end
+		end
+		new_board
+	end
+    
     def update(position, symbol)
         @board[position.to_i] = symbol
     end
