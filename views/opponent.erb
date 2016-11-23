@@ -1,11 +1,14 @@
-<div class="form-container">
-	<form action='opponent' method='post'>
-	    <p>Player <span class="player-two">2</span> will be O</p>
-	    <select autofocus name='player_2'>
-	        <option value='human'>Human</option>
-	        <option value='sequential_ai'>Easy</option>
-	        <option value='random_ai'>Medium</option>
-	        <option value='unbeatable_ai'>Hard</option>
+<div>
+	<p class ="text"><%= player_1_name %> will be X. Player 2 will be O</p>
+	<br>
+	
+	<form action="choose_opponent" method="post">
+	    	<p class ="text"><%= player_1_name %>, pick your poison:</p><br>
+		<select autofocus name="player_2">
+	        <option value="human">Human</option>
+	        <option value="sequential_ai">Easy</option>
+	        <option value="random_ai">Medium</option>
+	        <option value="unbeatable_ai">Hard</option>
 	    </select>
 	    <input type="submit" value="Submit">
 	</form>

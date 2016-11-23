@@ -3,7 +3,7 @@ require 'rubygems'
 require_relative 'random_ai.rb'
 require_relative 'unbeatable_ai.rb'
 require_relative 'sequential_ai.rb'
-require_relative 'board.rb'
+require_relative 'new_board.rb'
 require_relative 'human.rb'
 
 enable :sessions
@@ -22,11 +22,11 @@ end
 
 post '/game' do
 	session[:player_1_name] = params[:player_1].capitalize
-	session[:p1] = Human.new("X")
-    session[:current_player] = session[:p1]
-    session[:current_player_name] = session[:player_1_name]
+	session[:player_1] = Console_human.new("X")
+    session[:current_player] = session[:player_1]
+    # session[:current_player_name] = session[:player_1_name]
 
-    erb :choose_opponent, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :player_1_name => session[:player_1_name] }
+    erb :opponent, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :player_1_name => session[:player_1_name] }
 
     # redirect '/choose_opponent'
 end
@@ -36,31 +36,34 @@ end
 # end
 
 
-post '/opponent' do
+post '/choose_opponent' do
 	player_2 = params[:player_2].capitalize
-         if player_2 == "human"
-           session[:p2] = Human.new("O") 
-           erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+    
+	if player_2 == "human"
+           session[:player_2] = Console_human.new("O") 
+           
+		   erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+		   
+		   session[:player_2_name] = session[:player_2]
+	redirect '/player_2_name'
 
-		   redirect '/player_2_name'
+	# elsif player_2 == "sequential_ai"
+	# 	session[:player_2] = SequentialAI.new("O")
+	# 	session[:player_2_name] = "Computer"
 
-	elsif player_2 == "sequential_ai"
-		session[:p2] = SequentialAI.new("O")
-		session[:name_player_2] = "Computer"
+	# 	redirect '/get_move'
 
-		redirect '/get_move'
+	# elsif player_2 == "random_ai"
+	# 	session[:player_2] = RandomAI.new("O")
+	# 	session[:player_2_name] = "Computer"
 
-	elsif player_2 == "random_ai"
-		session[:p2] = RandomAI.new("O")
-		session[:name_player_2] = "Computer"
+	# 	redirect '/get_move'
 
-		redirect '/get_move'
+	# else player_2 == "unbeatable_ai"
+	# 	session[:player_2] = UnbeatableAI.new("O")
+	# 	session[:player_2_name] = "Computer"
 
-	else player_2 == "unbeatable_ai"
-		session[:p2] = UnbeatableAI.new("O")
-		session[:name_player_2] = "Computer"
-
-		redirect '/get_move'
+	# 	redirect '/get_move'
 	end
 end
 
@@ -70,26 +73,24 @@ get '/player_2_name' do
 end
 
 post '/player_2_name' do
-    session[:player_2_name] = params[:player_2_name].capitalize
+    session[:player_2_name] = params[:player_2]
+	session[:current_player_name] = session[:player_1_name].capitalize
 	redirect '/get_move'
 end
 
-get '/play_game' do
-    session[:player_1] = Human.new("X")
-    session[:current_player] = session[:player_1]
-    session[:current_player_name] = session[:player_1_name]
+# get '/play_game' do
+#     session[:player_1] = Human.new("X")
+#     session[:current_player] = session[:player_1]
+#     session[:current_player_name] = session[:player_1_name]
 
-    erb :play_game, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :current_player_name => session[:current_player_name], :player_1_name => session[:player_1_name], :player_2_name => session[:player_2_name]}
+#     erb :play_game, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :current_player_name => session[:current_player_name], :player_1_name => session[:player_1_name], :player_2_name => session[:player_2_name]}
 #     #the above saves your board and lets you pull it everytime you call it?  Pushes your board into the erb.  
 
 #     # redirect '/get_move'
 # end
 
-post 
-
-
 get '/get_move' do
-	move = session[:current_player].get_move(session[:board].positions)
+	move = session[:current_player].get_move(session[:board].grid)
     
 	if move == "NO"
 	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
@@ -116,7 +117,9 @@ end
 get '/make_move' do
 	move_spot = params[:move_spot].to_i
 	session[:board].update((move_spot -1), session[:current_player].marker)
-
+    
+	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+	
 	if session[:board].winner?(session[:current_player].marker) == true
 		player_1 = session[:player_1_name]
 		player_2 = session[:player_2_name]
@@ -149,5 +152,4 @@ get '/change_player' do
 		end
 
 		erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
-	
 end

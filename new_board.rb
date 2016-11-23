@@ -1,7 +1,7 @@
 class Board
 
 	attr_accessor :grid
-	
+
 	def initialize(board)
 		@grid = board
 	end
@@ -19,7 +19,7 @@ class Board
 	end
 
 	def update(position, marker)
-		grid[position.to_i] = marker
+		grid[position] = marker
 	end
 
 	def valid_space?(position)
