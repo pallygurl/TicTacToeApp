@@ -49,6 +49,17 @@
   border-collapse: collapse;
   border-style:hidden;
 }
+
+#top-center, #center, #bottom-center {
+  border-left: 1px solid #1c1c1c;
+  border-right: 1px solid #1c1c1c;
+}
+
+#middle-left, #center, #middle-right {
+  border-top: 1px solid #1c1c1c;
+  border-bottom: 1px solid #1c1c1c;
+}
+
 #td{
     border: 1px solid black;
     width: 200px; height: 200px;

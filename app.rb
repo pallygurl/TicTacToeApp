@@ -16,11 +16,11 @@ get '/' do
     erb :home, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
 end
 
-# get '/player_1_name' do
-#     erb :player_1_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
-# end
+get '/player_1_name' do
+    erb :player_1_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+end
 
-post '/game' do
+post '/player_1_name' do
 	session[:player_1_name] = params[:player_1].capitalize
 	session[:player_1] = Console_human.new("X")
     session[:current_player] = session[:player_1]
