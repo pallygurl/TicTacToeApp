@@ -44,7 +44,7 @@
 	color: #03840e; font-weight: bold; text-align: left; padding-left: 5rem; text-transform: capitalize;
 }
 
-#board { 
+#board {
   margin: 0 auto;
   border-collapse: collapse;
   border-style:hidden;
@@ -65,18 +65,23 @@
     width: 200px; height: 200px;
 }
 
-#board tr td { 
-  width: 80px; 
-  height: 80px; 
-  font-family: Helvetica; 
-  font-size: 30px; 
-  text-align: center; 
+.board-data {
+	background: white;
+	font-size: 30px;
+	border: none
 }
- 
-#board tr td:hover {  
+
+#board tr td {
+  width: 80px;
+  height: 80px;
+  font-family: Helvetica;
+  font-size: 30px;
+  text-align: center;
+}
+
+#board tr td:hover {
   cursor: pointer;
 }
 #results {
-  
-   margin: 0 auto;
 
+   margin: 0 auto;
