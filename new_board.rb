@@ -1,7 +1,7 @@
 class Board
 
 	attr_accessor :grid
-
+	
 	def initialize(board)
 		@grid = board
 	end
@@ -24,11 +24,11 @@ class Board
 
 	def valid_space?(position)
 		position = (position - 1)
-		position >= 0 && position <= 8 && grid[position] == " "
+		position >= 0 && position <= 8 && grid[position] == ""
 	end
 
 	def full_board?
-		grid.count(" ") == 0
+		grid.count("") == 0
 	end
 
 	def winner?(marker)
