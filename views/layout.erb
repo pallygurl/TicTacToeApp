@@ -1,23 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang='en'>
+    <head>
+        <%#<title><%= @title %></title>%>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' href='css/styles.css'>
+    </head>
+    <body>
+    <center>
+    	<div class='header-container'>
+            <h1 id='header'><a>Tic Tac Toe</a></h1>
+        </div>
+        <header>
+            <ul class="textstyle">
+                <li>
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href='https://en.wikipedia.org/wiki/Tic-tac-toe' target='blank'>Rules</a>
+                </li>
+                <li>
+                    <a href="/player_1_name">
+                        Play
+                    </a>
+                </li>
+            </ul>
+        </header>
 
-<head> 
-  <title> Tic Tac Toe
-       </title>
-
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <link rel="stylesheet" href = "css/style.css">
-    <link rel="stylesheet" href = "css/responsive.css" media="screen and (max-width: 900px)">
-    
-</head>   
-
-<style>
-	 
-	 
-	 </style>
-      <body> 
-
-	 <form action="get_player_move" method="post">
+        <form action="get_player_move" method="post">
             <table id='board'>
             	<tr>
                 	<td id='top-left'><input class='board-data' type='submit' name="square" value='<%= board[0] %>'></td>
@@ -37,15 +48,13 @@
         </table>
         </form>
         </center>
-
-	
-
-<%=yield%>
-
-
-
-	</body>  
-
-<footer> <p> <a href = "http://www.theonion.com" target = "blank">Super Awesome Tic Tac Toe</a>&copy; 2016</p>
- </footer>
+		<%= yield %>
+        <hr class="style-one">
+        <footer class='footer-container'>
+            <h3 id='footer'></h3>
+        </footer>
+        <hr class='style-one'>
+        <center><p id='copyright'>&#169;Cyndi Bolton 2016</p></center>
+    </body>
+</html>
 

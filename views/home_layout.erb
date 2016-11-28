@@ -1,19 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang='en'>
+    <head>
+     <%#<title><%= @title %></title>%>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' href='css/styles.css'>
+    </head>
+    <body>
+    	<div class='header-container'>
+            <h1 id='header'><a href='/'>Tic Tac Toe</a></h1>
+        </div>
+  <header>
 
-<head> 
-  <title> Tic Tac Toe
-       </title>
+            <ul class="textstyle">
+                <li>
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href='https://en.wikipedia.org/wiki/Tic-tac-toe' target='blank'>Rules</a>      
+                </li>
+                <li>
+                    <a href="/player_1_name">
+                        Play
+                    </a>
+                </li>
+            </ul>
+    </header>
 
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <link rel="stylesheet" href = "css/style.css">
-    <link rel="stylesheet" href = "css/responsive.css" media="screen and (max-width: 900px)">
-    
- </head>   
-
-      <body> 
-   
-	     <table id='board'>
+        <table id='board'>
             <tr>
                 <td id='top-left'><%= board[0] %></td>
                 <td id='top-center'><%= board[1] %></td>
@@ -31,12 +46,12 @@
             </tr>
         </table>
 
-<%=yield%>
-
-
-
-	</body>  
-
-<footer> <p> <a href = "http://www.theonion.com" target = "blank">Super Awesome Tic Tac Toe</a>&copy; 2016</p>
- </footer>
-
+		<%= yield %>
+        <hr class="style-one">
+        <footer class='footer-container'>
+            <h3 id='footer'><a></a></h3>
+        </footer>
+        <hr class='style-one'>
+        <p id='copyright'>&#169;Cyndi Bolton 2016</p>
+    </body>
+</html>
