@@ -1,5 +1,5 @@
 .header-container {
-  background-color: #2b3340;
+  background-color: #03840e;
   margin-bottom: 5%;
 }
 
@@ -41,10 +41,26 @@
   transform: scaleX(1);
 }*/
 .text {
-	color: #03840e; font-weight: bold; text-align: left; padding-left: 5rem; text-transform: capitalize;
+	color: #03840e;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 5rem; text-transform: capitalize;
 }
 
-<<<<<<< HEAD
+.text1 {
+	color: #03840e;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 5rem;
+}
+
+.text2 {
+	color: #03840e;
+  font-weight: bold;
+  /*text-align: center;*/
+  padding-left: 0rem; text-transform: capitalize;
+}
+
 ul {
 	text-align: right;
 }
@@ -59,8 +75,6 @@ li a {
 	color: #03840e;
 }
 
-=======
->>>>>>> 4960388abfc4a39c018e749ec4557eeb70617d95
 #board {
   margin: 0 auto;
   border-collapse: collapse;
@@ -99,14 +113,25 @@ li a {
 #board tr td:hover {
   cursor: pointer;
 }
-<<<<<<< HEAD
 
 .player-one {
   color: purple;
+  text-transform: capitalize;
 }
 
 /* Player Two text color on Opponent page*/
 .player-two {
+  color: orange;
+  text-transform: capitalize;
+}
+
+/* Color of X placed on board and Player One */
+input[value="X"] {
+  color: purple;
+}
+
+/* Color of O placed on board and Player Two */
+input[value="O"] {
   color: orange;
 }
 
@@ -122,7 +147,7 @@ li a {
   background:-ms-linear-gradient(top, #599bb3 5%, #408c99 100%);
   background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);*/
-  background-color:#599bb3;
+  background-color:#03840e;
   /*-moz-border-radius:8px;
   -webkit-border-radius:8px;*/
   border-radius:8px;
@@ -189,15 +214,13 @@ hr.style-one {
 	   background: #333;
 	   background-image: linear-gradient(to right, #ccc, #2b3340, #ccc);
 	   margin: 2% 10% 2% 10%;
-}	 
+}
 
 /* Forms for Player 1 name, Opponent pages */
 .form-container {
   text-align: center;
   margin-bottom: 10%;
 }
-=======
 #results {
 
    margin: 0 auto;
->>>>>>> 4960388abfc4a39c018e749ec4557eeb70617d95

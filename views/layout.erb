@@ -1,34 +1,20 @@
-<<<<<<< HEAD
-<!doctype html>
-<html lang='en'>
-    <head>
-        <%#<title><%= @title %></title>%>
-        <meta charset='utf-8'>
-        <link rel='stylesheet' href='css/styles.css'>
-    </head>
-    <body>
-    <center>
-    	<div class='header-container'>
-            <h1 id='header'><a>Tic Tac Toe</a></h1>
-        </div>
-        <header>
-            <ul class="textstyle">
-=======
 <!DOCTYPE html>
-<<<<<<< HEAD
-<!-- <html lang='en'> -->
+<html lang="en">
     <head>
       <title> <%= @title %></title>
-        <meta charset='utf-8'>
+        <!-- <meta charset='utf-8'> -->
         <link rel="stylesheet" href="css/style.css">
+        <!-- <link rel="stylesheet" href = "css/responsive.css" media="screen and (max-width: 900px)"> -->
+
     </head>
     <body>
     <center>
     	<div class="header-container">
             <h1 id="header"><a>Tic Tac Toe</a></h1>
-        </div>
+      </div>
         <header>
-            <ul>
+
+ 	 <ul class="textstyle">
                 <li><a href="/">Home</a></li>
                 <!-- <li> -->
                     <!-- <a href='https://en.wikipedia.org/wiki/Tic-tac-toe' target='blank'>Rules</a> -->
@@ -37,51 +23,8 @@
             </ul>
         </header>
 
-=======
-<html lang="en">
-
- <head>
-    <title><%= @title %></title>
-
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <link rel="stylesheet" href = "css/style.css">
-    <link rel="stylesheet" href = "css/responsive.css" media="screen and (max-width: 900px)">
-
- </head>
-
- <body>
-
-	 <ul class="textstyle">
->>>>>>> b7072ac7f2c310720d544748605790560610891e
-                <li>
-                    <a href="/">
-                        Home
-                    </a>
-                </li>
-                <li>
-<<<<<<< HEAD
-                    <a href='https://en.wikipedia.org/wiki/Tic-tac-toe' target='blank'>Rules</a>
-=======
-                    <a href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="blank">Rules</a>
->>>>>>> b7072ac7f2c310720d544748605790560610891e
-                </li>
-                <li>
-                    <a href="/player_1_name">
-                        Play
-                    </a>
-                </li>
-            </ul>
-        </header>
-
-<<<<<<< HEAD
->>>>>>> 4960388abfc4a39c018e749ec4557eeb70617d95
-        <form action="get_player_move" method="post">
-            <table id='board'>
-=======
-
 	 <form action="get_player_move" method="post">
             <table id="board">
->>>>>>> b7072ac7f2c310720d544748605790560610891e
             	<tr>
                 	<td id="top-left"><input class="board-data" type="submit" name="square" value="<%= board[0] %>"></td>
                 	<td id="top-center"><input class="board-data" type="submit" name="square" value="<%= board[1] %>"></td>
@@ -100,43 +43,12 @@
            </table>
         </form>
         </center>
-<<<<<<< HEAD
 		<%= yield %>
-        <footer>
-        <center>
-        <hr class="style-one">
+  </body>
 
-            <h3 id="footer"></h3>
-            <p> <a href = "http://www.theonion.com" target = "blank"></a>&copy; Cyndi Bolton, 2016</p>
-
-        </footer>
-
-      </center>
-    </body>
-</html>
-=======
-<<<<<<< HEAD
-		<%= yield %>
-        <hr class="style-one">
         <footer class='footer-container'>
             <h3 id='footer'></h3>
+            <hr class='style-one'>
+        <center><p><a href = "http://www.theonion.com" target = "blank">Super Awesome Tic Tac Toe by Cyndi Bolton </a>&copy; 2016</p></center>
         </footer>
-        <hr class='style-one'>
-        <center><p id='copyright'>&#169;Cyndi Bolton 2016</p></center>
-    </body>
 </html>
-
-=======
-
-
-
-<%=yield%>
-
-
-
-	</body>
-
-<footer> <p> <a href = "http://www.theonion.com" target = "blank">Super Awesome Tic Tac Toe</a>&copy; 2016</p>
- </footer>
->>>>>>> b7072ac7f2c310720d544748605790560610891e
->>>>>>> 4960388abfc4a39c018e749ec4557eeb70617d95
